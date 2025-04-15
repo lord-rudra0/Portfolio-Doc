@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Dr. Sarah Johnson, Cardiologist & Medical Researcher</title>
+    <meta name="description" content="Contact Dr. Sarah Johnson for appointments, inquiries, or collaborations.">
+    <meta name="author" content="Dr. Sarah Johnson">
+    <meta property="og:title" content="Contact | Dr. Sarah Johnson, Cardiologist & Medical Researcher">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Dr. Sarah Johnson</div>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="expertise.html">Expertise</a></li>
+            <li><a href="experience.html">Experience</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> dr.sarah@example.com</p>
+                <p><i class="fas fa-location-dot"></i> 123 Medical Center Dr, City, State</p>
+                
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-researchgate"></i></a>
+                </div>
+            </div>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn primary">Send Message</button>
+            </form>
+        </div>
+        
+        <div class="map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1!2d-73.9!3d40.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM40zMCcwMC4wIk4gNzPCsDU0JzAwLjAiVw!5e0!3m2!1sen!2sus!4v1234567890"
+                width="100%"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <footer>
+        <!-- Same footer as index.html -->
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
