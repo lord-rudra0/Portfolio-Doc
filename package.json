@@ -1,0 +1,13 @@
+{
+  "name": "doctor-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Professional doctor portfolio website",
+  "scripts": {
+    "dev": "live-server",
+    "build": "mkdir -p dist && cp -r *.html *.css *.js dist/"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
