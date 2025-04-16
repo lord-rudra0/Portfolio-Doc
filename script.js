@@ -13,18 +13,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navigation Toggle
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const navOverlay = document.createElement('div');
+    navOverlay.className = 'nav-overlay';
+    document.body.appendChild(navOverlay);
 
     if (navToggle) {
         navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            // Animate hamburger menu
             navToggle.classList.toggle('active');
-            const spans = navToggle.querySelectorAll('span');
-            spans[0].style.transform = navToggle.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : '';
-            spans[1].style.opacity = navToggle.classList.contains('active') ? '0' : '1';
-            spans[2].style.transform = navToggle.classList.contains('active') ? 'rotate(-45deg) translate(5px, -5px)' : '';
+            navLinks.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
         });
     }
+
+    navOverlay.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        navOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    // Close mobile menu when clicking on a nav link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Close mobile menu when resizing window
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
 
     // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
