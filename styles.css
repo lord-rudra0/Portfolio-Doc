@@ -266,20 +266,203 @@ p {
   }
 }
 
-/* Section Spacing */
-section,
-.about,
-.expertise,
-.experience,
-.contact,
-.projects,
-.testimonials,
-.faq,
-.research {
-  padding: 4rem 2rem 2rem;
-  margin-top: 0;
-  margin-bottom: 2rem;
-  animation: fadeIn 1s;
+/* Section Spacing and Layout */
+section {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* About Card Sections */
+.about-card {
+  background: var(--dark-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* First section (About Profile) */
+.about-card.about-profile {
+  margin: 6rem auto 2.5rem auto;
+  padding: 2.5rem;
+}
+
+/* Education Section */
+.about-card.education-section {
+  margin: 2.5rem auto;
+  padding: 2.5rem;
+}
+
+/* Regular About Cards (Licenses, Languages, etc.) */
+.about-card:not(.about-profile):not(.education-section) {
+  margin: 2.5rem auto;
+  padding: 2rem;
+}
+
+/* Section Headers */
+.about-card h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+/* About Profile Content */
+.about-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.about-image {
+  flex: 0 0 auto;
+  width: 300px;
+  max-width: 40%;
+}
+
+.about-text {
+  flex: 1;
+  padding-left: 1rem;
+}
+
+.about-text p {
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* List Styling in About Cards */
+.about-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-card ul li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.about-card ul li:last-child {
+  border-bottom: none;
+}
+
+/* FAQ Section */
+.faq {
+  margin: 2.5rem auto;
+  padding: 2.5rem;
+  background: var(--dark-bg);
+  border-radius: var(--border-radius);
+}
+
+.faq-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.faq-item {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.faq-item h3 {
+  margin-bottom: 0.75rem;
+  color: var(--primary-color);
+}
+
+.faq-item p {
+  margin: 0;
+}
+
+/* Timeline Adjustments */
+.timeline {
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+.timeline-item {
+  margin-bottom: 2.5rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-content {
+  padding: 1.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .about-card.about-profile {
+    margin-top: 5rem;
+    padding: 2rem;
+  }
+
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .about-image {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .about-text {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .about-card:not(.about-profile) {
+    padding: 1.5rem;
+  }
+
+  .faq {
+    padding: 2rem;
+  }
+
+  .faq-container {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-card.about-profile {
+    margin-top: 4.5rem;
+    padding: 1.5rem;
+  }
+
+  .about-card h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-content {
+    padding: 1.25rem;
+  }
+
+  .faq {
+    padding: 1.5rem;
+  }
+
+  .faq-item {
+    padding: 1.25rem;
+  }
+}
+
+/* Spacing between sections */
+section + section {
+  margin-top: 2.5rem;
+}
+
+/* Add subtle transitions */
+.about-card, .faq-item {
+  transition: transform 0.3s ease;
+}
+
+.about-card:hover, .faq-item:hover {
+  transform: translateY(-2px);
 }
 
 /* Hero Section */
@@ -402,62 +585,6 @@ section,
 }
 
 /* About Section */
-.about-profile .about-content {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 2rem;
-    align-items: flex-start;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.about-profile .about-image {
-    flex: 0 0 auto;
-    width: 300px;
-    max-width: 40%;
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-}
-
-.about-profile .about-text {
-    flex: 1;
-    min-width: 0;
-    padding: 0 0 0 2rem;
-}
-
-.about-profile .about-text p {
-    font-size: 1.12rem;
-    color: var(--text-color);
-    margin-bottom: 0;
-    line-height: 1.7;
-}
-
-@media (max-width: 768px) {
-    .about-profile .about-content {
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem;
-    }
-
-    .about-profile .about-image {
-        width: 100%;
-        max-width: 300px;
-        margin-bottom: 1.5rem;
-        padding: 0;
-    }
-
-    .about-profile .about-text {
-        padding: 0;
-        text-align: center;
-    }
-}
-
-/* About Section  */
 .about {
   background: var(--dark-bg);
   padding: 4rem 2rem;
@@ -774,79 +901,6 @@ section,
 
 .research-item button[type="submit"] {
   margin-top: 1.5rem;
-}
-
-/* FAQ Section */
-.faq {
-  background: var(--dark-bg);
-  padding: 6rem 2rem 4rem;
-  margin-top: 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.faq h2 {
-  text-align: center;
-  margin-bottom: 2.5rem;
-  color: var(--primary-color);
-  font-size: 2rem;
-  position: relative;
-}
-
-.faq h2::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: var(--gradient-primary);
-  border-radius: 2px;
-  margin: 1rem auto 0 auto;
-}
-
-.faq-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-}
-
-.faq-item {
-  background: #fff;
-  border-radius: var(--border-radius);
-  box-shadow: 0 2px 8px rgba(44,62,80,0.04);
-  padding: 2rem 1.5rem;
-  flex: 1 1 350px;
-  max-width: 500px;
-  margin-bottom: 2rem;
-  transition: box-shadow 0.3s, transform 0.3s;
-}
-
-.faq-item:hover {
-  box-shadow: var(--hover-shadow);
-  transform: translateY(-6px) scale(1.03);
-}
-
-.faq-item h3 {
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.faq-item h3:hover {
-  color: var(--secondary-color);
-}
-
-.faq-item p {
-  color: var(--text-color);
-  font-size: 1.05rem;
-  margin-bottom: 0;
-  margin-top: 0.5rem;
-  line-height: 1.6;
 }
 
 /* Testimonials Section */
@@ -1692,5 +1746,60 @@ html {
     
     .map iframe {
         height: 350px;
+    }
+}
+
+/* About Section Spacing Optimization */
+.about-card.about-profile {
+    padding: 2rem;
+    margin: 6rem auto 1rem auto;
+}
+
+.about-content {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.about-text {
+    flex: 1;
+    padding: 0 0 0 1rem;
+}
+
+.about-text h2 {
+    margin-bottom: 0.75rem;
+    font-size: 2rem;
+}
+
+.about-text p {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+/* Maintain responsive design with optimized spacing */
+@media (max-width: 768px) {
+    .about-card.about-profile {
+        padding: 1.5rem;
+        margin: 5rem auto 1rem auto;
+    }
+
+    .about-content {
+        gap: 1rem;
+    }
+
+    .about-text {
+        padding: 0;
+        text-align: center;
+    }
+
+    .about-text h2 {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-card.about-profile {
+        margin: 4.5rem auto 1rem auto;
     }
 }
