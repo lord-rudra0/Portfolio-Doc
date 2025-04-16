@@ -1659,33 +1659,16 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Resume Link Styles
-.resume-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--primary-color);
-    color: var(--text-white) !important;
-    padding: 0.5rem 1rem !important;
-    border-radius: 24px;
-    transition: var(--transition);
+.active {
+  background-color: #a5c4da;
+  color: #000;
+  border-radius: 30px;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: 2px solid #a5c4da;
 }
-
-.resume-link i {
-    font-size: 0.8rem;
-}
-
-.resume-link:hover {
-    background: var(--hover-primary);
-    transform: translateY(-2px);
-}
-
-/* Update mobile styles for resume link */
-/* @media (max-width: 768px) {
-    .resume-link {
-        margin-top: 1rem;
-    }
-}   */
 
 /* Map styles */
 .map {
