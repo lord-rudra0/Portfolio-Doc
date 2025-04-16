@@ -262,4 +262,84 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrolled = (winScroll / height) * 100;
         progressBar.style.width = scrolled + '%';
     };
+
+    // Dynamic Content Loading
+    const contentContainer = document.querySelector('.content-container');
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'loading-indicator';
+    loadingIndicator.innerHTML = '<div class="spinner"></div>';
+    loadingIndicator.style.display = 'none';
+    document.body.appendChild(loadingIndicator);
+
+    let isLoading = false;
+    let currentPage = 1;
+
+    const contentObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !isLoading) {
+                loadMoreContent();
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '100px',
+        threshold: 0.1
+    });
+
+    const targetElement = document.querySelector('.load-more-trigger');
+    if (targetElement) {
+        contentObserver.observe(targetElement);
+    }
+
+    async function loadMoreContent() {
+        if (isLoading) return;
+        
+        isLoading = true;
+        loadingIndicator.style.display = 'block';
+
+        try {
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Create new content
+            const newContent = document.createElement('div');
+            newContent.className = 'content-section';
+            newContent.innerHTML = `
+                <h2>Section ${currentPage + 1}</h2>
+                <p>This is dynamically loaded content for section ${currentPage + 1}.</p>
+            `;
+            
+            // Add fade-in animation
+            newContent.style.opacity = '0';
+            newContent.style.transform = 'translateY(20px)';
+            newContent.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            
+            if (contentContainer) {
+                contentContainer.appendChild(newContent);
+                
+                // Trigger animation
+                setTimeout(() => {
+                    newContent.style.opacity = '1';
+                    newContent.style.transform = 'translateY(0)';
+                }, 50);
+            }
+            
+            currentPage++;
+            
+            // Update the trigger element position
+            if (targetElement) {
+                contentObserver.unobserve(targetElement);
+                targetElement.remove();
+                const newTrigger = document.createElement('div');
+                newTrigger.className = 'load-more-trigger';
+                contentContainer.appendChild(newTrigger);
+                contentObserver.observe(newTrigger);
+            }
+        } catch (error) {
+            console.error('Error loading more content:', error);
+        } finally {
+            isLoading = false;
+            loadingIndicator.style.display = 'none';
+        }
+    }
 });
