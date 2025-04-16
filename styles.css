@@ -278,45 +278,113 @@ section,
   color: #fff;
 }
 
-/* About Section */
-.about-content {
+/* About Section - Professional Layout */
+.about {
+  background: var(--dark-bg);
+  padding: 6rem 2rem 4rem;
+  margin-top: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
   max-width: 1200px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-content {
   display: flex;
-  gap: 3rem;
-  align-items: flex-start;
   flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
 }
 
 .about-image {
-  width: 340px;
-  height: 440px;
-  object-fit: cover;
+  background: #fff;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  max-width: 340px;
+  width: 100%;
   margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  object-fit: cover;
 }
 
 .about-text {
-  flex: 1;
-  min-width: 280px;
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(44,62,80,0.04);
+  padding: 2rem 1.5rem;
+  flex: 1 1 350px;
+  max-width: 500px;
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.about-text:hover {
+  box-shadow: var(--hover-shadow);
+  transform: translateY(-6px) scale(1.03);
 }
 
 .about-text h2 {
   color: var(--primary-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  font-size: 2rem;
+  position: relative;
+}
+
+.about-text h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--secondary-color);
+  border-radius: 2px;
+  margin: 1rem auto 0 auto;
+}
+
+.about-text p {
+  font-size: 1.12rem;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.about-text h3 {
+  color: var(--secondary-color);
+  margin-top: 2.2rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  border-left: 4px solid var(--secondary-color);
+  padding-left: 0.7rem;
+  background: rgba(52, 152, 219, 0.05);
+  border-radius: 4px;
 }
 
 .about-text ul {
   list-style: none;
-  margin: 1rem 0 2rem 0;
   padding: 0;
+  flex-direction: column;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  margin-bottom: 0;
+  max-width: 100%;
 }
 
 .about-text ul li {
-  margin-bottom: 0.7rem;
+  margin-bottom: 1.5rem;
   padding-left: 1.5rem;
   position: relative;
+  font-size: 1.08rem;
 }
 
 .about-text ul li::before {
@@ -437,14 +505,18 @@ section,
   margin-bottom: 0.5rem;
 }
 
+.research-item button[type="submit"] {
+  margin-top: 1.5rem;
+}
+
 /* FAQ Section */
 .faq {
-  background: #fff;
+  background: var(--dark-bg);
   padding: 6rem 2rem 4rem;
   margin-top: 2rem;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  max-width: 900px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -469,26 +541,31 @@ section,
 
 .faq-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 2rem;
+  justify-content: center;
 }
 
 .faq-item {
-  background: var(--light-bg);
+  background: #fff;
   border-radius: var(--border-radius);
   box-shadow: 0 2px 8px rgba(44,62,80,0.04);
   padding: 2rem 1.5rem;
-  transition: box-shadow 0.3s;
+  flex: 1 1 350px;
+  max-width: 500px;
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
 .faq-item:hover {
   box-shadow: var(--hover-shadow);
+  transform: translateY(-6px) scale(1.03);
 }
 
 .faq-item h3 {
   color: var(--primary-color);
-  font-size: 1.2rem;
   margin-bottom: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: color 0.2s;
 }
@@ -649,6 +726,10 @@ footer {
   color: #fff;
   padding: 4rem 2rem 2rem;
   position: relative;
+  min-height: var(--navbar-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 footer::before {
@@ -667,6 +748,7 @@ footer::before {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 3rem;
+  flex: 1 0 auto;
 }
 
 .footer-section h3 {
@@ -737,6 +819,10 @@ footer::before {
   padding-top: 2rem;
   margin-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-bottom p {
@@ -836,9 +922,197 @@ footer::before {
   }
 }
 
+@media (max-width: 900px) {
+  .about-content,
+  .about-text,
+  .about-card ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 100%;
+  }
+}
+
 /* Utility Classes */
 .text-center { text-align: center; }
 .mt-2 { margin-top: 2rem; }
 .mt-4 { margin-top: 4rem; }
 .mb-2 { margin-bottom: 2rem; }
-.mb-4 { margin-bottom: 4rem; } 
+.mb-4 { margin-bottom: 4rem; }
+
+.about-card {
+  background: var(--dark-bg);
+  padding: 6rem 2rem 4rem;
+  margin-top: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-card h2 {
+  color: var(--primary-color);
+  margin-bottom: 2.5rem;
+  text-align: center;
+  font-size: 2rem;
+  position: relative;
+}
+
+.about-card h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--secondary-color);
+  border-radius: 2px;
+  margin: 1rem auto 0 auto;
+}
+
+.about-card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-card ul li {
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(44,62,80,0.04);
+  padding: 1.5rem 1.2rem;
+  margin-bottom: 0;
+  font-size: 1.08rem;
+  color: var(--text-color);
+  position: relative;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.about-card ul li:hover {
+  box-shadow: var(--hover-shadow);
+  transform: translateY(-6px) scale(1.03);
+}
+
+.about-card ul li::before {
+  content: '•';
+  color: var(--secondary-color);
+  position: absolute;
+  left: 1rem;
+  font-size: 1.2em;
+  top: 1.5rem;
+}
+
+/* Remove default left padding since we use our own */
+.about-card ul {
+  padding-left: 0;
+}
+.about-card ul li {
+  padding-left: 2.5rem;
+}
+
+/* Profile card layout */
+.about-profile .about-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-profile .about-image {
+  flex: 0 0 240px;
+  max-width: 240px;
+  width: 100%;
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-profile .about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  object-fit: cover;
+}
+
+.about-profile .about-text {
+  flex: 1 1 300px;
+  min-width: 220px;
+}
+
+.about-profile .about-text p {
+  font-size: 1.12rem;
+  color: var(--text-color);
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .about-profile .about-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .about-profile .about-image,
+  .about-profile .about-text {
+    max-width: 100%;
+  }
+}
+
+/* Stylish image card effect for all main images */
+img,
+.project-image,
+.about-image img {
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.12);
+  border: 4px solid #fff;
+  background: #f8f9fa;
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s cubic-bezier(.4,0,.2,1);
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Add a subtle accent border for profile and project images */
+.about-image img,
+.project-image {
+  border: 4px solid var(--secondary-color);
+  background: #fff;
+}
+
+/* Hover effect for interactivity */
+img:hover,
+.project-image:hover,
+.about-image img:hover {
+  transform: scale(1.04) rotate(-1deg);
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.18);
+  border-color: var(--accent-color);
+}
+
+/* Optional: add a soft overlay on hover for project images */
+.project-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image::after {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(52,152,219,0.08) 0%, rgba(231,76,60,0.06) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  border-radius: var(--border-radius);
+}
+
+.project-image:hover::after {
+  opacity: 1;
+} 
