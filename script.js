@@ -413,67 +413,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Schedule viewing functionality
-    function showAppointmentSchedule() {
-        document.getElementById('scheduleModal').style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        loadAvailableSlots();
-    }
-
-    function closeScheduleModal() {
-        document.getElementById('scheduleModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    async function loadAvailableSlots() {
-        const date = document.getElementById('scheduleDate').value;
-        if (!date) return;
-
-        try {
-            const response = await fetch(`http://localhost:5000/api/appointments/available-slots?date=${date}`);
-            const availableSlots = await response.json();
-
-            const slotsContainer = document.getElementById('availableSlots');
-            slotsContainer.innerHTML = '';
-
-            const allSlots = ['09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'];
-            
-            allSlots.forEach(slot => {
-                const slotElement = document.createElement('div');
-                slotElement.className = `time-slot ${availableSlots.includes(slot) ? 'available' : 'booked'}`;
-                slotElement.textContent = slot;
-                slotsContainer.appendChild(slotElement);
-            });
-        } catch (error) {
-            console.error('Error loading slots:', error);
-        }
-    }
-
-    async function submitAppointment(formData) {
-        try {
-            const response = await fetch('http://localhost:5000/api/appointments', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || 'Failed to submit appointment');
-            }
-
-            // Show success message
-            showNotification('Success!', 'Appointment request submitted successfully. Check your email for confirmation.', 'success');
-            return true;
-        } catch (error) {
-            showNotification('Error', error.message, 'error');
-            return false;
-        }
-    }
-
     // Add notification system
     function showNotification(title, message, type = 'info') {
         const notification = document.createElement('div');

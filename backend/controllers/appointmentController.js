@@ -13,59 +13,7 @@ const transporter = nodemailer.createTransport({
 
 exports.createAppointment = async (req, res) => {
   try {
-    console.log('Received appointment data:', req.body); // Debug log
-
-    // Validate required fields
-    const requiredFields = ['name', 'email', 'phone', 'date', 'time', 'type'];
-    const missingFields = requiredFields.filter(field => !req.body[field]);
-    
-    if (missingFields.length > 0) {
-      return res.status(400).json({
-        message: `Missing required fields: ${missingFields.join(', ')}`
-      });
-    }
-
-    // Validate date is not in the past
-    const appointmentDate = new Date(req.body.date);
-    if (appointmentDate < new Date().setHours(0, 0, 0, 0)) {
-      return res.status(400).json({
-        message: 'Appointment date cannot be in the past'
-      });
-    }
-
-    // Validate time format and availability
-    const validTimes = ['09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'];
-    if (!validTimes.includes(req.body.time)) {
-      return res.status(400).json({
-        message: 'Invalid appointment time'
-      });
-    }
-
-    // Check for existing appointment at the same time
-    const existingAppointment = await Appointment.findOne({
-      date: appointmentDate,
-      time: req.body.time,
-      status: { $ne: 'cancelled' }
-    });
-
-    if (existingAppointment) {
-      return res.status(400).json({
-        message: 'This time slot is already booked'
-      });
-    }
-
-    // Create appointment
-    const appointment = new Appointment({
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
-      date: appointmentDate,
-      time: req.body.time,
-      type: req.body.type,
-      symptoms: req.body.symptoms || '',
-      status: 'pending'
-    });
-
+    const appointment = new Appointment(req.body);
     await appointment.save();
 
     // Send email to doctor
@@ -101,16 +49,9 @@ exports.createAppointment = async (req, res) => {
       `
     });
 
-    res.status(201).json({
-      message: 'Appointment created successfully',
-      appointment
-    });
+    res.status(201).json(appointment);
   } catch (error) {
-    console.error('Server error:', error); // Debug log
-    res.status(400).json({
-      message: error.message || 'Error creating appointment',
-      error: error.errors || {}
-    });
+    res.status(400).json({ message: error.message });
   }
 };
 
