@@ -1034,10 +1034,10 @@ section + section {
 }
 
 .research-item {
-  background: #fff;
+  background: var(--card-bg);
   border-radius: var(--border-radius);
-  box-shadow: 0 2px 8px rgba(44,62,80,0.04);
-  padding: 2rem 1.5rem;
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
   flex: 1 1 350px;
   max-width: 500px;
   margin-bottom: 2rem;
@@ -1857,10 +1857,6 @@ html {
         height: 3rem;
     }
 
-    .timeline-dot i {
-        font-size: 1.2rem;
-    }
-
     .timeline-content {
         padding: 1.5rem;
     }
@@ -2244,12 +2240,12 @@ html {
 }
 
 /* Card Animations */
-.about-card, .research-item, .faq-item {
+.about-card, .research-item, .faq-item, .testimonial {
     transition: var(--transition-medium);
     animation: fadeIn var(--transition-medium);
 }
 
-.about-card:hover, .research-item:hover, .faq-item:hover {
+.about-card:hover, .research-item:hover, .faq-item:hover, .testimonial:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
@@ -2511,3 +2507,218 @@ footer {
     padding: 1rem 2rem;
     font-size: 1.1rem;
 }
+
+/* Common Card Styles */
+.research-item,
+.about-card,
+.faq-item,
+.testimonial {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    height: 100%;  /* Ensure same height */
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    min-height: 300px;  /* Set minimum height */
+}
+
+/* Grid Container for Cards */
+.research-grid,
+.about-grid,
+.faq-container,
+.testimonial-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* Card Content Layout */
+.research-item .project-content,
+.about-content,
+.faq-content,
+.testimonial-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Card Header */
+.research-item h3,
+.about-card h3,
+.faq-item h3,
+.testimonial h3 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Card Description */
+.research-item p,
+.about-card p,
+.faq-item p,
+.testimonial p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;  /* Allow text to fill space */
+}
+
+/* Card Date/Subtitle */
+.date,
+.subtitle {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Card Actions (Buttons) */
+.project-actions,
+.card-actions {
+    margin-top: auto;  /* Push to bottom */
+    display: flex;
+    gap: 1rem;
+}
+
+/* Card Hover Effect */
+.research-item:hover,
+.about-card:hover,
+.faq-item:hover,
+.testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+/* Button Styling */
+.btn.secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    background: var(--secondary-color);
+    color: var(--text-white);
+    text-decoration: none;
+    gap: 0.5rem;
+}
+
+.btn.secondary:hover {
+    background: var(--hover-secondary);
+    transform: translateY(-2px);
+}
+
+/* Card Image (if any) */
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .research-grid,
+    .about-grid,
+    .faq-container,
+    .testimonial-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 0.75rem;
+    }
+
+    .research-item,
+    .about-card,
+    .faq-item,
+    .testimonial {
+        padding: 1.5rem;
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .research-grid,
+    .about-grid,
+    .faq-container,
+    .testimonial-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .research-item,
+    .about-card,
+    .faq-item,
+    .testimonial {
+        padding: 1.25rem;
+        min-height: 200px;
+    }
+
+    .btn.secondary {
+        width: 100%;
+        padding: 0.7rem 1rem;
+    }
+}
+
+/* List Styling in Cards */
+.card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.card-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.card-list li:last-child {
+    border-bottom: none;
+}
+
+/* Icon Styling in Cards */
+.card-icon {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+/* Card Header with Icon */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Animation for Cards */
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.research-item,
+.about-card,
+.faq-item,
+.testimonial {
+    animation: cardAppear 0.5s ease forwards;
+}
+
+/* Stagger animation for cards */
+.research-item:nth-child(1) { animation-delay: 0.1s; }
+.research-item:nth-child(2) { animation-delay: 0.2s; }
+.research-item:nth-child(3) { animation-delay: 0.3s; }
