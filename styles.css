@@ -178,7 +178,7 @@ p {
   }
 
   .nav-toggle {
-    display: flex;
+  display: flex;
   }
 
   .nav-links {
@@ -189,7 +189,7 @@ p {
     height: calc(100vh - var(--navbar-height));
     background: var(--card-bg);
     flex-direction: column;
-    align-items: center;
+  align-items: center;
     justify-content: flex-start;
     padding: 2rem 0;
     gap: 1.5rem;
@@ -476,18 +476,18 @@ section + section {
 }
 
 .hero-content {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
     gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
     animation: fadeIn var(--transition-slow);
 }
 
 .hero-image {
-    width: 380px;
-    height: 480px;
-    object-fit: cover;
+  width: 380px;
+  height: 480px;
+  object-fit: cover;
     animation: scaleIn var(--transition-slow);
     transition: var(--transition-medium);
 }
@@ -497,11 +497,11 @@ section + section {
 }
 
 .hero-text {
-    flex: 1;
+  flex: 1;
 }
 
 .hero-text h1 {
-    font-size: 3rem;
+  font-size: 3rem;
     margin-bottom: 0.5rem;
     line-height: 1.2;
     color: var(--primary-color);
@@ -512,7 +512,7 @@ section + section {
 
 .hero-text h2 {
     font-size: 1.6rem;
-    color: var(--secondary-color);
+  color: var(--secondary-color);
     margin-bottom: 0.5rem;
     font-weight: 600;
     animation: slideInLeft var(--transition-medium);
@@ -522,7 +522,7 @@ section + section {
 
 .hero-text p {
     font-size: 1.1rem;
-    color: var(--text-color);
+  color: var(--text-color);
     margin-bottom: 1.5rem;
     line-height: 1.5;
     animation: slideInLeft var(--transition-medium);
@@ -531,15 +531,15 @@ section + section {
 }
 
 .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .cta-buttons .btn {
-    padding: 0.9rem 2rem;
+  padding: 0.9rem 2rem;
     font-size: 1rem;
-    font-weight: 600;
+  font-weight: 600;
     border-radius: 50px;
     min-width: 160px;
     text-align: center;
@@ -611,7 +611,7 @@ section + section {
     }
 
     .hero-text p {
-        font-size: 1rem;
+  font-size: 1rem;
         margin: 0.5rem auto 1rem;
         line-height: 1.4;
         max-width: 100%;
@@ -684,9 +684,9 @@ section + section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
+  text-decoration: none;
     border: none;
-    cursor: pointer;
+  cursor: pointer;
     transition: var(--transition-fast);
     position: relative;
     overflow: hidden;
@@ -730,8 +730,8 @@ section + section {
 
 .btn.tertiary {
     background: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
 }
 
 /* Button Hover Effects */
@@ -749,7 +749,7 @@ section + section {
 }
 
 .btn.tertiary:hover {
-    background: var(--primary-color);
+  background: var(--primary-color);
     color: var(--text-white);
 }
 
@@ -1221,12 +1221,12 @@ footer {
     background: var(--primary-color);
     color: var(--text-white);
     padding: 0.75rem 2rem;
-    width: 100%;
+  width: 100%;
 }
 
 .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1263,8 +1263,8 @@ footer {
 
     footer {
         position: fixed;
-        bottom: 0;
-        left: 0;
+  bottom: 0;
+  left: 0;
         right: 0;
         z-index: 1000;
         padding: 0.5rem;
@@ -1285,9 +1285,9 @@ footer {
     /* Hide social icons section on mobile */
     .footer-section:last-child {
         display: none;
-    }
+}
 
-    .footer-section a {
+.footer-section a {
         font-size: 0.9rem;
         padding: 0.4rem;
         /* Add active state indicator */
@@ -1463,7 +1463,7 @@ footer {
 .mt-2 { margin-top: 2rem; }
 .mt-4 { margin-top: 4rem; }
 .mb-2 { margin-bottom: 2rem; }
-.mb-4 { margin-bottom: 4rem; }
+.mb-4 { margin-bottom: 4rem; } 
 
 /* Profile card layout */
 .about-profile .about-content {
@@ -2322,4 +2322,192 @@ footer {
 .main-content {
     width: 100%;
     overflow-x: hidden;
+}
+
+/* Project/Experience Button Styles */
+.research-item .btn.secondary,
+.project-content .btn.secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-white);
+    background: var(--secondary-color);
+    border: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(43, 176, 237, 0.2);
+}
+
+.research-item .btn.secondary::before,
+.project-content .btn.secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s ease;
+}
+
+.research-item .btn.secondary:hover::before,
+.project-content .btn.secondary:hover::before {
+    left: 100%;
+}
+
+.research-item .btn.secondary:hover,
+.project-content .btn.secondary:hover {
+    transform: translateY(-2px);
+    background: var(--hover-secondary);
+    box-shadow: 0 6px 20px rgba(43, 176, 237, 0.3);
+}
+
+.research-item .btn.secondary:active,
+.project-content .btn.secondary:active {
+    transform: translateY(0);
+}
+
+/* Add icon to button */
+.research-item .btn.secondary::after,
+.project-content .btn.secondary::after {
+    content: '→';
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.research-item .btn.secondary:hover::after,
+.project-content .btn.secondary:hover::after {
+    transform: translateX(3px);
+}
+
+/* Project Content Styles */
+.project-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.project-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.project-content .date {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Research Item Container */
+.research-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.research-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+/* Button Container */
+.project-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .research-item .btn.secondary,
+    .project-content .btn.secondary {
+        padding: 0.7rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    .project-content {
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .research-item {
+        padding: 1.25rem;
+    }
+
+    .research-item .btn.secondary,
+    .project-content .btn.secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 0.8rem 1rem;
+    }
+
+    .project-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+/* Optional: Add loading state for buttons */
+.btn.secondary.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn.secondary.loading::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s infinite linear;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Optional: Add different button variants */
+.btn.secondary.outline {
+    background: transparent;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.btn.secondary.outline:hover {
+    background: var(--secondary-color);
+    color: var(--text-white);
+}
+
+.btn.secondary.small {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+.btn.secondary.large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
 }
