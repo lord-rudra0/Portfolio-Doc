@@ -445,4 +445,35 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         return loader;
     }
+
+    // Add this function to update available time slots
+    async function updateAvailableTimeSlots() {
+        const dateInput = document.getElementById('appointmentDate');
+        const timeSelect = document.getElementById('appointmentTime');
+        const selectedDate = dateInput.value;
+
+        if (!selectedDate) {
+            timeSelect.innerHTML = '<option value="">Select Time</option>';
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:5000/api/appointments/available-slots?date=${selectedDate}`);
+            const availableSlots = await response.json();
+
+            timeSelect.innerHTML = '<option value="">Select Time</option>';
+            availableSlots.forEach(slot => {
+                const option = document.createElement('option');
+                option.value = slot;
+                option.textContent = slot;
+                timeSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error loading available time slots:', error);
+            showNotification('Error', 'Failed to load available time slots', 'error');
+        }
+    }
+
+    // Add event listener to date input
+    document.getElementById('appointmentDate').addEventListener('change', updateAvailableTimeSlots);
 });
