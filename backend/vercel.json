@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "server.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "server.js"
+        }
+    ],
+    "env": {
+        "MONGO_URI": "mongodb+srv://neilseneasow:33Atlast41@cluster1.mypxt.mongodb.net/careerfindr?retryWrites=true&w=majority",
+        "EMAIL_USER": "prataprudra10102001@gmail.com",
+        "EMAIL_PASS": "otxfrbzlzrtfkigd"
+    }
+}
