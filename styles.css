@@ -465,123 +465,262 @@ section + section {
   transform: translateY(-2px);
 }
 
-/* Hero Section */
+/* Hero Section Base Styles */
 .hero {
-  background: var(--gradient-light);
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+    min-height: 90vh;
+    padding: 6rem 2rem 4rem;
+    background: var(--light-bg);
 }
 
 .hero-content {
-  display: flex;
-  align-items: center;
-  gap: 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .hero-image {
-  width: 380px;
-  height: 480px;
-  object-fit: cover;
-  border-radius: 0;
-  box-shadow: none;
-  border: none;
-  transition: transform 0.3s;
-  animation: popIn 1.2s;
-}
-
-.hero-image:hover {
-  transform: scale(1.02);
-  box-shadow: none;
-  border-color: transparent;
+    width: 380px;
+    height: 480px;
+    object-fit: cover;
 }
 
 .hero-text {
-  flex: 1;
+    flex: 1;
 }
 
 .hero-text h1 {
-  color: var(--primary-color);
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-.hero-text h1::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: var(--secondary-color);
-  border-radius: 2px;
-  margin-top: 0.5rem;
+    font-size: 3.2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+    color: var(--primary-color);
 }
 
 .hero-text h2 {
-  color: var(--secondary-color);
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .hero-text p {
-  font-size: 1.15rem;
-  margin-bottom: 2rem;
-  color: var(--text-color);
+    font-size: 1.15rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 600px;
 }
 
 .cta-buttons {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
-/* Buttons */
+.cta-buttons .btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 5rem 1.5rem 3rem;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .hero-image {
+        width: 280px;
+        height: 350px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .hero-text p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .cta-buttons {
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .cta-buttons .btn {
+        padding: 0.9rem 1.75rem;
+        font-size: 1rem;
+        min-width: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 4.5rem 1rem 2.5rem;
+    }
+
+    .hero-image {
+        width: 240px;
+        height: 300px;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        padding: 0 0.5rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+        padding: 0 0.5rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+        padding: 0 0.5rem;
+        line-height: 1.5;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 0.85rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Button Styles */
 .btn {
-  display: inline-block;
-  padding: 0.9rem 2rem;
-  border-radius: 32px;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  border: 2px solid transparent;
-  transition: var(--transition);
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(44,62,80,0.04);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .btn.primary {
-  background: var(--primary-color);
-  color: var(--text-white);
+    background: var(--primary-color);
+    color: var(--text-white);
 }
 
 .btn.primary:hover {
-  background: var(--hover-primary);
+    background: var(--hover-primary);
+    transform: translateY(-2px);
 }
 
 .btn.secondary {
-  background: var(--secondary-color);
-  color: var(--text-white);
+    background: var(--secondary-color);
+    color: var(--text-white);
 }
 
 .btn.secondary:hover {
-  background: var(--hover-secondary);
+    background: var(--hover-secondary);
+    transform: translateY(-2px);
 }
 
 .btn.tertiary {
-  background: #fff;
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
 
 .btn.tertiary:hover {
-  background: var(--primary-color);
-  color: #fff;
+    background: var(--primary-color);
+    color: var(--text-white);
+    transform: translateY(-2px);
+}
+
+/* Portrait Phones */
+@media (max-height: 700px) and (max-width: 480px) {
+    .hero {
+        padding: 4rem 1rem 2rem;
+    }
+
+    .hero-image {
+        width: 200px;
+        height: 250px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1.1rem;
+    }
+
+    .hero-text p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .cta-buttons .btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape Phones */
+@media (max-height: 480px) and (orientation: landscape) {
+    .hero {
+        padding: 4.5rem 1rem 2rem;
+    }
+
+    .hero-content {
+        flex-direction: row;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .hero-image {
+        width: 200px;
+        height: 250px;
+    }
+
+    .hero-text {
+        text-align: left;
+    }
+
+    .cta-buttons {
+        justify-content: flex-start;
+    }
 }
 
 /* About Section */
