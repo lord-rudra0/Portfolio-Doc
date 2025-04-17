@@ -2784,10 +2784,11 @@ footer {
 .loader-spinner {
     width: 20px;
     height: 20px;
-    border: 2px solid var(--primary-color);
-    border-top-color: transparent;
+    border: 3px solid var(--light-bg);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    border-top-color: var(--primary-color);
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
 }
 
 .submit-loader p {
@@ -2853,5 +2854,236 @@ footer {
     to {
         transform: translateX(0);
         opacity: 1;
+    }
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--light-bg);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+}
+
+/* Loading State for Buttons */
+.btn.loading {
+    position: relative;
+    cursor: not-allowed;
+    opacity: 0.8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn.loading::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    border-top-color: currentColor;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Enhanced Button Styles */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 8px;
+    min-width: 120px;
+    overflow: hidden;
+}
+
+/* Primary Button */
+.btn.primary {
+    background: var(--primary-color);
+    color: var(--text-white);
+}
+
+.btn.primary:hover {
+    background: var(--hover-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 95, 122, 0.2);
+}
+
+.btn.primary:active {
+    transform: translateY(0);
+}
+
+/* Secondary Button (Cancel) */
+.btn.secondary {
+    background: transparent;
+    color: var(--text-color);
+    border: 2px solid var(--text-light);
+}
+
+.btn.secondary:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.btn.secondary:active {
+    transform: translateY(0);
+}
+
+/* Confirm Button */
+.btn.confirm {
+    background: var(--success-color);
+    color: var(--text-white);
+}
+
+.btn.confirm:hover {
+    background: var(--hover-success, #2d9d98);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(56, 178, 172, 0.2);
+}
+
+.btn.confirm:active {
+    transform: translateY(0);
+}
+
+/* Button Icons */
+.btn i {
+    font-size: 1.1em;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+    transform: translateX(3px);
+}
+
+/* Loading Container */
+.loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.loading-content {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    animation: scaleIn 0.3s ease;
+}
+
+.loading-content .loading-spinner {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+}
+
+.loading-text {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Animations */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .form-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .loading-content {
+        width: 90%;
+        max-width: 320px;
+        padding: 1.5rem;
+    }
+
+    .loading-content .loading-spinner {
+        width: 32px;
+        height: 32px;
+    }
+
+    .loading-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.95rem;
+    }
+
+    .loading-content {
+        padding: 1.25rem;
+    }
+
+    .loading-spinner {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .loading-container {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .loading-content {
+        background: var(--dark-bg, #1a1a1a);
+    }
+
+    .loading-text {
+        color: var(--text-white);
     }
 }

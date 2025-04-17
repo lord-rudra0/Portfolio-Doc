@@ -349,28 +349,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Form Submission
+    // Show loading overlay
+    function showLoading(message = 'Processing...') {
+        const loadingHTML = `
+            <div class="loading-container">
+                <div class="loading-content">
+                    <div class="loading-spinner"></div>
+                    <p class="loading-text">${message}</p>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', loadingHTML);
+    }
+
+    // Hide loading overlay
+    function hideLoading() {
+        const loadingContainer = document.querySelector('.loading-container');
+        if (loadingContainer) {
+            loadingContainer.addEventListener('transitionend', () => {
+                loadingContainer.remove();
+            });
+            loadingContainer.style.opacity = '0';
+        }
+    }
+
+    // Update the appointment form submission
     document.getElementById('appointmentForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Show loader
-        const submitButton = this.querySelector('button[type="submit"]');
-        const originalText = submitButton.innerHTML;
-        const loader = createLoader();
-        submitButton.disabled = true;
-        submitButton.parentNode.insertBefore(loader, submitButton);
+        // Disable submit button and show loading state
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        submitBtn.innerHTML = '<div class="loading-spinner"></div>Processing...';
 
+        showLoading('Submitting appointment request...');
+        
         const formData = new FormData(this);
-        const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            phone: formData.get('phone'),
-            date: formData.get('appointmentDate'),
-            time: formData.get('appointmentTime'),
-            type: formData.get('appointmentType'),
-            symptoms: formData.get('symptoms') || '',
-            status: 'pending'
-        };
+        const data = Object.fromEntries(formData);
 
         try {
             const response = await fetch('http://localhost:5000/api/appointments', {
@@ -381,28 +398,49 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify(data)
             });
 
-            const responseData = await response.json();
-            
-            if (!response.ok) {
-                throw new Error(responseData.message || 'Failed to submit appointment');
+            if (response.ok) {
+                hideLoading();
+                showNotification('Success', 'Appointment request submitted successfully! Check your email for confirmation.', 'success');
+                closeAppointmentModal();
+                this.reset();
+            } else {
+                throw new Error('Failed to submit appointment');
             }
-
-            // Show success message
-            showNotification('Success!', 'Appointment request submitted successfully! Check your email for confirmation.', 'success');
-            
-            // Reset form and close modal
-            this.reset();
-            closeAppointmentModal();
         } catch (error) {
-            console.error('Error details:', error);
+            hideLoading();
             showNotification('Error', error.message, 'error');
         } finally {
-            // Remove loader and restore button
-            loader.remove();
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalText;
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('loading');
+            submitBtn.innerHTML = originalText;
         }
     });
+
+    // Update the appointment modal buttons
+    function updateAppointmentModal() {
+        const modalContent = document.querySelector('.modal-content');
+        const formActions = modalContent.querySelector('.form-actions');
+        
+        // Update button styles
+        formActions.innerHTML = `
+            <button type="button" class="btn secondary" onclick="closeAppointmentModal()">
+                <i class="fas fa-times"></i>
+                Cancel
+            </button>
+            <button type="submit" class="btn confirm">
+                <i class="fas fa-check"></i>
+                Confirm Appointment
+            </button>
+        `;
+    }
+
+    // Call this when opening the modal
+    function openAppointmentModal() {
+        document.getElementById('appointmentModal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        updateAppointmentModal();
+    }
 
     // Date Input Validation
     document.getElementById('appointmentDate').addEventListener('input', function() {
