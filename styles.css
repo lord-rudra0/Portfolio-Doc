@@ -531,7 +531,7 @@ section + section {
 /* Tablet Responsive */
 @media (max-width: 768px) {
     .hero {
-        padding: 4.5rem 1.5rem 2rem;
+          padding: 6rem 1.5rem 4rem;
     }
 
     .hero-content {
@@ -573,7 +573,7 @@ section + section {
 /* Mobile Responsive */
 @media (max-width: 480px) {
     .hero {
-        padding: 4rem 1rem 1.5rem;
+        padding: 5rem 1rem 3rem;
     }
 
     .hero-text {
@@ -639,7 +639,7 @@ section + section {
 /* Portrait Mode Optimization */
 @media (max-height: 600px) {
     .hero {
-        padding-top: 4rem;
+        padding-top: 6rem;
     }
 
     .hero-text h1 {
