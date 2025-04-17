@@ -33,7 +33,7 @@
                 <h2>Cardiologist & Medical Researcher</h2>
                 <p>Dedicated to providing exceptional cardiac care with over 15 years of experience</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn primary">Book Appointment</a>
+                    <button class="btn primary" id="bookAppointmentBtn">Book Appointment</button>
                     <a href="assets/Dr_Priya_Sharma_CV.pdf" target="_blank" class="btn secondary">View Resume</a>
                     <a href="contact.html" class="btn tertiary">Contact Me</a>
                 </div>
@@ -81,6 +81,83 @@
             </div>
         </div>
     </footer>
+
+    <div class="modal-overlay" id="appointmentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Schedule an Appointment</h2>
+                <button class="close-modal" onclick="closeAppointmentModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="appointmentForm" class="appointment-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name*</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number*</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address*</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age*</label>
+                        <input type="number" id="age" name="age" min="1" max="120" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentDate">Preferred Date*</label>
+                    <input type="date" id="appointmentDate" name="appointmentDate" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="appointmentTime">Preferred Time*</label>
+                        <select id="appointmentTime" name="appointmentTime" required>
+                            <option value="">Select Time</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                            <option value="17:00">05:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointmentType">Type of Appointment*</label>
+                        <select id="appointmentType" name="appointmentType" required>
+                            <option value="">Select Type</option>
+                            <option value="consultation">General Consultation</option>
+                            <option value="followup">Follow-up Visit</option>
+                            <option value="cardiac">Cardiac Evaluation</option>
+                            <option value="emergency">Emergency Consultation</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="symptoms">Symptoms or Concerns</label>
+                    <textarea id="symptoms" name="symptoms" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" required>
+                        I agree to the medical consultation terms and privacy policy
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn tertiary" onclick="closeAppointmentModal()">Cancel</button>
+                    <button type="submit" class="btn primary">Confirm Appointment</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

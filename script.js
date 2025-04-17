@@ -1,3 +1,4 @@
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Loading Animation
     const loading = document.createElement('div');
@@ -342,4 +343,41 @@ document.addEventListener('DOMContentLoaded', function() {
             loadingIndicator.style.display = 'none';
         }
     }
+
+    // Get the button
+    const bookAppointmentBtn = document.getElementById('bookAppointmentBtn');
+    
+    // Add click event listener
+    if (bookAppointmentBtn) {
+        bookAppointmentBtn.addEventListener('click', function() {
+            document.getElementById('appointmentModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Close button functionality
+    const closeButtons = document.querySelectorAll('.close-modal');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            document.getElementById('appointmentModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    // Form Submission
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Here you would typically send the form data to your backend
+        alert('Thank you! Your appointment request has been received. We will contact you shortly to confirm.');
+        closeAppointmentModal();
+    });
+
+    // Date Input Validation
+    document.getElementById('appointmentDate').addEventListener('input', function() {
+        const today = new Date();
+        const selected = new Date(this.value);
+        if (selected < today) {
+            this.value = today.toISOString().split('T')[0];
+        }
+    });
 });
