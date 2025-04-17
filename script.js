@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const data = Object.fromEntries(formData);
                 
                 try {
-                    const response = await fetch('http://localhost:5000/api/contact', {
+                    const response = await fetch('https://portfolio-doc-backend.vercel.app/api/contact', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Sending appointment data:', data);
 
         try {
-            const response = await fetch('http://localhost:5000/api/appointments', {
+            const response = await fetch('https://portfolio-doc-backend.vercel.app/api/appointments', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/api/appointments/available-slots?date=${selectedDate}`);
+            const response = await fetch(`https://portfolio-doc-backend.vercel.app/api/appointments/available-slots?date=${selectedDate}`);
             const availableSlots = await response.json();
 
             timeSelect.innerHTML = '<option value="">Select Time</option>';
