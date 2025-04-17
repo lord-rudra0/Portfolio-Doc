@@ -99,7 +99,9 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number*</label>
-                        <input type="tel" id="phone" name="phone" required>
+                        <input type="tel" id="phone" name="phone" required 
+                               pattern="^\+?[\d\s-]{10,}$" 
+                               title="Please enter a valid phone number">
                     </div>
                 </div>
                 <div class="form-row">
@@ -107,14 +109,11 @@
                         <label for="email">Email Address*</label>
                         <input type="email" id="email" name="email" required>
                     </div>
-                    <div class="form-group">
-                        <label for="age">Age*</label>
-                        <input type="number" id="age" name="age" min="1" max="120" required>
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="appointmentDate">Preferred Date*</label>
-                    <input type="date" id="appointmentDate" name="appointmentDate" required>
+                    <input type="date" id="appointmentDate" name="appointmentDate" required
+                           min="<?php echo date('Y-m-d'); ?>">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
