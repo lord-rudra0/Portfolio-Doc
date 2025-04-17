@@ -34,6 +34,7 @@
                 <p>Dedicated to providing exceptional cardiac care with over 15 years of experience</p>
                 <div class="cta-buttons">
                     <button class="btn primary" id="bookAppointmentBtn">Book Appointment</button>
+                    <button class="btn secondary" onclick="showAppointmentSchedule()">View Schedule</button>
                     <a href="assets/Dr_Priya_Sharma_CV.pdf" target="_blank" class="btn secondary">View Resume</a>
                     <a href="contact.html" class="btn tertiary">Contact Me</a>
                 </div>
@@ -156,6 +157,27 @@
                     <button type="submit" class="btn primary">Confirm Appointment</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="scheduleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Appointment Schedule</h2>
+                <button class="close-modal" onclick="closeScheduleModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="schedule-content">
+                <div class="date-picker">
+                    <label for="scheduleDate">Select Date:</label>
+                    <input type="date" id="scheduleDate" onchange="loadAvailableSlots()">
+                </div>
+                <div class="time-slots">
+                    <h3>Available Time Slots</h3>
+                    <div id="availableSlots" class="slots-grid"></div>
+                </div>
+            </div>
         </div>
     </div>
 

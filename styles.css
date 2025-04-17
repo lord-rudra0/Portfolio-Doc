@@ -2722,3 +2722,88 @@ footer {
 .research-item:nth-child(1) { animation-delay: 0.1s; }
 .research-item:nth-child(2) { animation-delay: 0.2s; }
 .research-item:nth-child(3) { animation-delay: 0.3s; }
+
+/* Schedule Modal Styles */
+.schedule-content {
+    padding: 2rem;
+}
+
+.date-picker {
+    margin-bottom: 2rem;
+}
+
+.slots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.time-slot {
+    padding: 0.75rem;
+    text-align: center;
+    border-radius: var(--border-radius);
+    background: var(--light-bg);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.time-slot.available {
+    background: var(--success-color);
+    color: white;
+}
+
+.time-slot.booked {
+    background: var(--accent-color);
+    color: white;
+    cursor: not-allowed;
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    background: white;
+    box-shadow: var(--box-shadow);
+    z-index: 1100;
+    min-width: 300px;
+    max-width: 400px;
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success {
+    border-left: 4px solid var(--success-color);
+}
+
+.notification.error {
+    border-left: 4px solid var(--error-color);
+}
+
+.notification.info {
+    border-left: 4px solid var(--secondary-color);
+}
+
+.notification h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+}
+
+.notification p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
