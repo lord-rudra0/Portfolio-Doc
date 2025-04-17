@@ -3087,3 +3087,261 @@ footer {
         color: var(--text-white);
     }
 }
+
+/* Enhanced Loading Styles */
+.loading-spinner {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid var(--light-bg);
+    border-radius: 50%;
+    border-top-color: var(--secondary-color);
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Button loading state */
+.btn.loading {
+    position: relative;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 1.2rem;
+    height: 1.2rem;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Enhanced Form Action Buttons */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.form-actions .btn {
+    min-width: 120px;
+    padding: 0.8rem 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Cancel Button */
+.btn.tertiary {
+    background: var(--light-bg);
+    color: var(--text-color);
+    border: 1px solid var(--dark-bg);
+}
+
+.btn.tertiary:hover {
+    background: var(--dark-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Confirm Button */
+.btn.primary {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.btn.primary:hover {
+    background: var(--hover-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 95, 122, 0.2);
+}
+
+/* Button Ripple Effect */
+.btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+}
+
+.btn:active::after {
+    transform: scale(0, 0);
+    opacity: .3;
+    transition: 0s;
+}
+
+/* Responsive Button Adjustments */
+@media (max-width: 768px) {
+    .form-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .loading-spinner {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn.loading::after {
+        width: 1rem;
+        height: 1rem;
+        right: 0.75rem;
+    }
+
+    .form-actions .btn {
+        font-size: 0.95rem;
+        padding: 0.875rem;
+    }
+}
+
+/* Loading Overlay for Form Submission */
+.form-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    backdrop-filter: blur(3px);
+    border-radius: var(--border-radius);
+}
+
+.loading-content {
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.loading-content .loading-spinner {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Loading Text Animation */
+.loading-text {
+    display: inline-block;
+    position: relative;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+.loading-text::after {
+    content: '...';
+    position: absolute;
+    right: -20px;
+    animation: ellipsis 1.5s infinite;
+}
+
+@keyframes ellipsis {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+}
+
+/* Responsive Loading Overlay */
+@media (max-width: 480px) {
+    .loading-content .loading-spinner {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .loading-text {
+        font-size: 1rem;
+    }
+}
+
+/* Button Focus States */
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 95, 122, 0.3);
+}
+
+.btn.tertiary:focus {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Disabled State */
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Loading Pulse Animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.loading-pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Improved Touch Targets for Mobile */
+@media (max-width: 768px) {
+    .btn {
+        min-height: 44px; /* Minimum touch target size */
+    }
+}
+
+/* High Contrast Loading State */
+@media (prefers-contrast: high) {
+    .loading-spinner {
+        border-width: 4px;
+    }
+    
+    .btn.loading::after {
+        border-width: 3px;
+    }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+    .loading-spinner,
+    .btn.loading::after {
+        animation-duration: 1.5s;
+    }
+    
+    .btn {
+        transition: none;
+    }
+}

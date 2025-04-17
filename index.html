@@ -98,9 +98,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number*</label>
-                        <input type="tel" id="phone" name="phone" required 
-                               pattern="^\+?[\d\s-]{10,}$" 
-                               title="Please enter a valid phone number">
+                        <input type="tel" id="phone" name="phone" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -111,14 +109,21 @@
                 </div>
                 <div class="form-group">
                     <label for="appointmentDate">Preferred Date*</label>
-                    <input type="date" id="appointmentDate" name="appointmentDate" required
-                           min="<?php echo date('Y-m-d'); ?>">
+                    <input type="date" id="appointmentDate" name="appointmentDate" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="appointmentTime">Preferred Time*</label>
                         <select id="appointmentTime" name="appointmentTime" required>
                             <option value="">Select Time</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                            <option value="17:00">05:00 PM</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -135,12 +140,6 @@
                 <div class="form-group">
                     <label for="symptoms">Symptoms or Concerns</label>
                     <textarea id="symptoms" name="symptoms" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" required>
-                        I agree to the medical consultation terms and privacy policy
-                    </label>
                 </div>
                 <div class="form-actions">
                     <button type="button" class="btn secondary" onclick="closeAppointmentModal()">

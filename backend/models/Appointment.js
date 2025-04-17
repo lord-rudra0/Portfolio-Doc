@@ -3,56 +3,44 @@ const mongoose = require('mongoose');
 const appointmentSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please provide your name'],
-    trim: true,
-    maxlength: [50, 'Name cannot be more than 50 characters']
+    required: [true, 'Name is required'],
+    trim: true
   },
   email: {
     type: String,
-    required: [true, 'Please provide your email'],
-    match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      'Please provide a valid email'
-    ]
+    required: [true, 'Email is required'],
+    trim: true,
+    lowercase: true
   },
   phone: {
     type: String,
-    required: [true, 'Please provide your phone number'],
-    match: [
-      /^\+?[\d\s-]{10,}$/,
-      'Please provide a valid phone number'
-    ]
+    required: [true, 'Phone number is required'],
+    trim: true
   },
   date: {
     type: Date,
-    required: [true, 'Please provide appointment date'],
-    validate: {
-      validator: function(v) {
-        return v >= new Date();
-      },
-      message: 'Appointment date cannot be in the past'
-    }
+    required: [true, 'Appointment date is required']
   },
   time: {
     type: String,
-    required: [true, 'Please provide appointment time'],
+    required: [true, 'Appointment time is required'],
     enum: {
       values: ['09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00'],
-      message: 'Invalid appointment time'
+      message: 'Please select a valid appointment time'
     }
   },
   type: {
     type: String,
-    required: [true, 'Please provide appointment type'],
+    required: [true, 'Appointment type is required'],
     enum: {
       values: ['consultation', 'followup', 'cardiac', 'emergency'],
-      message: 'Invalid appointment type'
+      message: 'Please select a valid appointment type'
     }
   },
   symptoms: {
     type: String,
     trim: true,
-    maxlength: [500, 'Symptoms description cannot be more than 500 characters']
+    default: ''
   },
   status: {
     type: String,

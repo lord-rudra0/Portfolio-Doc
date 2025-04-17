@@ -13,7 +13,31 @@ const transporter = nodemailer.createTransport({
 
 exports.createAppointment = async (req, res) => {
   try {
-    const appointment = new Appointment(req.body);
+    console.log('Received appointment data:', req.body);
+
+    // Validate required fields
+    const requiredFields = ['name', 'email', 'phone', 'date', 'time', 'type'];
+    for (const field of requiredFields) {
+      if (!req.body[field]) {
+        return res.status(400).json({
+          message: `${field.charAt(0).toUpperCase() + field.slice(1)} is required`
+        });
+      }
+    }
+
+    // Create appointment
+    const appointment = new Appointment({
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      date: new Date(req.body.date),
+      time: req.body.time,
+      type: req.body.type,
+      symptoms: req.body.symptoms || '',
+      status: 'pending'
+    });
+
+    // Save appointment
     await appointment.save();
 
     // Send email to doctor
@@ -49,9 +73,16 @@ exports.createAppointment = async (req, res) => {
       `
     });
 
-    res.status(201).json(appointment);
+    res.status(201).json({
+      success: true,
+      message: 'Appointment created successfully',
+      data: appointment
+    });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    console.error('Appointment creation error:', error);
+    res.status(400).json({
+      message: error.message || 'Error creating appointment'
+    });
   }
 };
 

@@ -387,7 +387,19 @@ document.addEventListener('DOMContentLoaded', function() {
         showLoading('Submitting appointment request...');
         
         const formData = new FormData(this);
-        const data = Object.fromEntries(formData);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+            date: formData.get('appointmentDate'),
+            time: formData.get('appointmentTime'),
+            type: formData.get('appointmentType'),
+            symptoms: formData.get('symptoms') || '',
+            status: 'pending'
+        };
+
+        // Log the data being sent
+        console.log('Sending appointment data:', data);
 
         try {
             const response = await fetch('http://localhost:5000/api/appointments', {
@@ -398,13 +410,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify(data)
             });
 
+            const responseData = await response.json();
+
             if (response.ok) {
                 hideLoading();
                 showNotification('Success', 'Appointment request submitted successfully! Check your email for confirmation.', 'success');
                 closeAppointmentModal();
                 this.reset();
             } else {
-                throw new Error('Failed to submit appointment');
+                throw new Error(responseData.message || 'Failed to submit appointment');
             }
         } catch (error) {
             hideLoading();
