@@ -10,12 +10,19 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// Middleware
+// CORS Configuration
 app.use(cors({
-    origin: '*', // Update this with your frontend URL in production
+    origin: [
+        'https://rudra-ps-portfolio-doc.vercel.app',
+        'http://127.0.0.1:8080',
+        'http://localhost:8080'
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    optionsSuccessStatus: 200
 }));
+
 app.use(express.json());
 
 // Health check route
@@ -40,16 +47,8 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-// Check if we're in Vercel's production environment
-if (process.env.VERCEL_ENV === 'production') {
-    // Export the app for Vercel serverless deployment
-    module.exports = app;
-} else {
-    // Start the server for local development
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-    });
-}
+// Export the app for Vercel serverless deployment
+module.exports = app;
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err) => {

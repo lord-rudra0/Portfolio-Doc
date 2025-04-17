@@ -9,7 +9,13 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "server.js"
+            "dest": "server.js",
+            "headers": {
+                "Access-Control-Allow-Origin": "https://rudra-ps-portfolio-doc.vercel.app",
+                "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
+                "Access-Control-Allow-Headers": "X-Requested-With,Content-Type,Authorization",
+                "Access-Control-Allow-Credentials": "true"
+            }
         }
     ],
     "env": {
