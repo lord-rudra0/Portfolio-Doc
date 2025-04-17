@@ -353,6 +353,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('appointmentForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
+        // Show loader
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+        const loader = createLoader();
+        submitButton.disabled = true;
+        submitButton.parentNode.insertBefore(loader, submitButton);
+
         const formData = new FormData(this);
         const data = {
             name: formData.get('name'),
@@ -364,8 +371,6 @@ document.addEventListener('DOMContentLoaded', function() {
             symptoms: formData.get('symptoms') || '',
             status: 'pending'
         };
-
-        console.log('Sending appointment data:', data); // Debug log
 
         try {
             const response = await fetch('http://localhost:5000/api/appointments', {
@@ -382,12 +387,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error(responseData.message || 'Failed to submit appointment');
             }
 
-            alert('Appointment request submitted successfully! Check your email for confirmation.');
+            // Show success message
+            showNotification('Success!', 'Appointment request submitted successfully! Check your email for confirmation.', 'success');
+            
+            // Reset form and close modal
             this.reset();
             closeAppointmentModal();
         } catch (error) {
-            console.error('Error details:', error); // Debug log
-            alert('Error submitting appointment: ' + error.message);
+            console.error('Error details:', error);
+            showNotification('Error', error.message, 'error');
+        } finally {
+            // Remove loader and restore button
+            loader.remove();
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
         }
     });
 
@@ -475,5 +488,22 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             notification.remove();
         }, 5000);
+    }
+
+    // Add these functions at the top of script.js
+    function closeAppointmentModal() {
+        document.getElementById('appointmentModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Create a loader component
+    function createLoader() {
+        const loader = document.createElement('div');
+        loader.className = 'submit-loader';
+        loader.innerHTML = `
+            <div class="loader-spinner"></div>
+            <p>Submitting your appointment...</p>
+        `;
+        return loader;
     }
 });
