@@ -467,15 +467,14 @@ section + section {
 
 /* Hero Section Base Styles */
 .hero {
-    min-height: 90vh;
-    padding: 6rem 2rem 4rem;
+    padding: 10rem 2rem 5.5rem;
     background: var(--light-bg);
 }
 
 .hero-content {
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -491,25 +490,24 @@ section + section {
 }
 
 .hero-text h1 {
-    font-size: 3.2rem;
-    margin-bottom: 0.75rem;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
     line-height: 1.2;
     color: var(--primary-color);
 }
 
 .hero-text h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: var(--secondary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     font-weight: 600;
 }
 
 .hero-text p {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: var(--text-color);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-    max-width: 600px;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
 }
 
 .cta-buttons {
@@ -519,54 +517,46 @@ section + section {
 }
 
 .cta-buttons .btn {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
     font-weight: 600;
     border-radius: 50px;
-    transition: all 0.3s ease;
+    min-width: 160px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .hero-text h1 {
-        font-size: 2.8rem;
-    }
-
-    .hero-text h2 {
-        font-size: 1.6rem;
-    }
-}
-
+/* Tablet Responsive */
 @media (max-width: 768px) {
     .hero {
-        padding: 5rem 1.5rem 3rem;
+        padding: 4.5rem 1.5rem 2rem;
     }
 
     .hero-content {
         flex-direction: column;
         text-align: center;
-        gap: 2rem;
     }
 
-    .hero-image {
-        width: 280px;
-        height: 350px;
+    .hero-text {
+        padding: 0 1rem;
     }
 
     .hero-text h1 {
-        font-size: 2.4rem;
-        margin-bottom: 0.5rem;
+        font-size: 2.5rem;
+        margin-bottom: 0.4rem;
     }
 
     .hero-text h2 {
         font-size: 1.4rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.4rem;
     }
 
     .hero-text p {
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-        padding: 0 1rem;
+        font-size: 1.05rem;
+        margin: 0.75rem auto;
+        max-width: 500px;
     }
 
     .cta-buttons {
@@ -575,52 +565,97 @@ section + section {
     }
 
     .cta-buttons .btn {
-        padding: 0.9rem 1.75rem;
-        font-size: 1rem;
-        min-width: 160px;
+        padding: 0.85rem 1.75rem;
+        min-width: 150px;
     }
 }
 
+/* Mobile Responsive */
 @media (max-width: 480px) {
     .hero {
-        padding: 4.5rem 1rem 2.5rem;
+        padding: 4rem 1rem 1.5rem;
     }
 
-    .hero-image {
-        width: 240px;
-        height: 300px;
+    .hero-text {
+        padding: 0 0.5rem;
     }
 
     .hero-text h1 {
         font-size: 2rem;
-        margin-bottom: 0.5rem;
-        padding: 0 0.5rem;
+        margin-bottom: 0.3rem;
     }
 
     .hero-text h2 {
         font-size: 1.2rem;
-        margin-bottom: 0.75rem;
-        padding: 0 0.5rem;
+        margin-bottom: 0.3rem;
     }
 
     .hero-text p {
         font-size: 1rem;
-        margin-bottom: 1.25rem;
-        padding: 0 0.5rem;
-        line-height: 1.5;
+        margin: 0.5rem auto 1rem;
+        line-height: 1.4;
+        max-width: 100%;
     }
 
     .cta-buttons {
         flex-direction: column;
-        align-items: center;
-        gap: 0.75rem;
+        gap: 0.5rem;
+        padding: 0 1rem;
     }
 
     .cta-buttons .btn {
         width: 100%;
-        max-width: 280px;
-        padding: 0.85rem 1.5rem;
+        padding: 0.8rem 1rem;
         font-size: 0.95rem;
+        min-width: 0;
+    }
+}
+
+/* Small Mobile Responsive */
+@media (max-width: 360px) {
+    .hero {
+        padding: 3.5rem 0.75rem 1.5rem;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1.1rem;
+    }
+
+    .hero-text p {
+        font-size: 0.95rem;
+        margin: 0.5rem auto 0.75rem;
+    }
+
+    .cta-buttons .btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Portrait Mode Optimization */
+@media (max-height: 600px) {
+    .hero {
+        padding-top: 4rem;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1.1rem;
+    }
+
+    .hero-text p {
+        margin: 0.5rem auto 0.75rem;
+    }
+
+    .cta-buttons .btn {
+        padding: 0.7rem 1.5rem;
     }
 }
 
@@ -638,21 +673,13 @@ section + section {
 .btn.primary {
     background: var(--primary-color);
     color: var(--text-white);
-}
-
-.btn.primary:hover {
-    background: var(--hover-primary);
-    transform: translateY(-2px);
+    border: none;
 }
 
 .btn.secondary {
     background: var(--secondary-color);
     color: var(--text-white);
-}
-
-.btn.secondary:hover {
-    background: var(--hover-secondary);
-    transform: translateY(-2px);
+    border: none;
 }
 
 .btn.tertiary {
@@ -661,66 +688,23 @@ section + section {
     border: 2px solid var(--primary-color);
 }
 
+/* Button Hover Effects */
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn.primary:hover {
+    background: var(--hover-primary);
+}
+
+.btn.secondary:hover {
+    background: var(--hover-secondary);
+}
+
 .btn.tertiary:hover {
     background: var(--primary-color);
     color: var(--text-white);
-    transform: translateY(-2px);
-}
-
-/* Portrait Phones */
-@media (max-height: 700px) and (max-width: 480px) {
-    .hero {
-        padding: 4rem 1rem 2rem;
-    }
-
-    .hero-image {
-        width: 200px;
-        height: 250px;
-    }
-
-    .hero-text h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero-text h2 {
-        font-size: 1.1rem;
-    }
-
-    .hero-text p {
-        font-size: 0.95rem;
-        margin-bottom: 1rem;
-    }
-
-    .cta-buttons .btn {
-        padding: 0.75rem 1.25rem;
-        font-size: 0.9rem;
-    }
-}
-
-/* Landscape Phones */
-@media (max-height: 480px) and (orientation: landscape) {
-    .hero {
-        padding: 4.5rem 1rem 2rem;
-    }
-
-    .hero-content {
-        flex-direction: row;
-        gap: 2rem;
-        align-items: center;
-    }
-
-    .hero-image {
-        width: 200px;
-        height: 250px;
-    }
-
-    .hero-text {
-        text-align: left;
-    }
-
-    .cta-buttons {
-        justify-content: flex-start;
-    }
 }
 
 /* About Section */
